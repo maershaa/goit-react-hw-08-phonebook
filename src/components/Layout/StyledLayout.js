@@ -23,6 +23,11 @@ export const StyledLayout = styled.div`
     list-style: none;
     display: flex;
     flex-direction: row;
+    text-align: center;
+    justify-content: center;
+
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .headerLink {
@@ -63,5 +68,20 @@ export const StyledLayout = styled.div`
   }
   .info {
     text-align: center;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    align-items: center;
+
+    font-size: 2.5rem;
+    color: #369baf;
   }
 `;

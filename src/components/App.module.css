@@ -35,7 +35,7 @@
   /* Плавные анимации */
   transition: transform 0.2s, background-color 0.2s;
 }
-.tabs .activeTab {
+/* .tabs .activeTab {
   background-color: #c779d0;
 }
 
@@ -44,4 +44,4 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
-}
+} */
