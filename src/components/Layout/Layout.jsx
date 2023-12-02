@@ -25,6 +25,23 @@ const Layout = ({ children }) => {
           <ul className="list">
             <li>
               <NavLink className="headerLink" to="/">
+                Home Page
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="headerLink" to="/login">
+                Log in
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink className="headerLink" to="/register">
+                Registration
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink className="headerLink" to="/contacts">
                 Contact List
               </NavLink>
             </li>

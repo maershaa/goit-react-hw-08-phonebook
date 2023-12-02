@@ -19,6 +19,9 @@ import Layout from 'components/Layout/Layout';
 import Loader from 'components/Loader/Loader';
 
 const HomePage = lazy(() => import('pages/HomePage'));
+const Login = lazy(() => import('pages/Login'));
+const Register = lazy(() => import('pages/Register'));
+const Contacts = lazy(() => import('pages/Contacts'));
 const FavouriteContactsPage = lazy(() => import('pages/FavouriteContactsPage'));
 const AddConactPage = lazy(() => import('pages/AddConactPage'));
 const NotFound = lazy(() => import('pages/NotFound'));
@@ -37,6 +40,10 @@ const App = () => {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/contacts" element={<Contacts />} />
           <Route
             path="/favouriteContacts"
             element={<FavouriteContactsPage />}

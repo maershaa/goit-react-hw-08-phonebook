@@ -1,12 +1,9 @@
 import React from 'react';
-import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import { NothingFoundContainer } from 'pages/StyledNothingFoundContainer';
 
 const NotFound = () => {
   return (
     <NothingFoundContainer>
-      {/* Кнопка для возврата на предыдущую страницу */}
-      <GoBackBtn />
       <h2 className="nothingFoundTitle">Nothing Found</h2>
       <p className="nothingFoundText">
         Sorry, nothing was found for your search.
