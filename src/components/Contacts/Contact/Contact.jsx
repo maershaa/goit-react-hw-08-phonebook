@@ -7,9 +7,12 @@ import { selectContactsIsFavourite } from 'redux/selectors';
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
-  // Получение значения из хранилища о том, является ли контакт избранным
-  const isFavourite = useSelector(selectContactsIsFavourite);
-  // !console.log('isFavourite in Contact:', isFavourite);
+  // Используем хук useSelector из React-Redux для извлечения статуса "избранности" контакта
+  // из состояния Redux. Вызываем selectContactsIsFavourite, передавая ему текущее состояние (state)
+  // и идентификатор контакта (id). Полученное значение сохраняется в переменной isFavourite.
+  const isFavourite = useSelector(state =>
+    selectContactsIsFavourite(state, id)
+  );
 
   // Состояние для установки стиля избранной кнопки
   const [iconFill, setIconFill] = useState('none');

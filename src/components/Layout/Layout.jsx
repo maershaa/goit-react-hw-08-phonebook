@@ -57,7 +57,9 @@ const Layout = ({ children }) => {
             </li>
           </ul>
         </header>
+
         <h1>Phonebook</h1>
+
         <main>{children}</main>
 
         <footer>

@@ -1,4 +1,4 @@
-.form {
+/* .form {
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
@@ -7,23 +7,13 @@
   justify-content: center;
 
   width: 350px;
-  background: #feac5e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #feac5e;
+  background: -webkit-linear-gradient(to right, #4bc0c8, #c779d0, #feac5e);
+  background: linear-gradient(to right, #4bc0c8, #c779d0, #feac5e);
 
-  border-radius: 20px; /* Скругленные углы */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Тень */
-}
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+} */
 
 .formLabel {
   display: flex;

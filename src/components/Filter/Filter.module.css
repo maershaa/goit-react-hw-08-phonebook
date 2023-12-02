@@ -1,4 +1,10 @@
 .inputText {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   margin-top: 30px;
   margin-bottom: 20px;
   margin-right: auto;
@@ -11,6 +17,4 @@
   font-weight: 300;
   height: 39px;
   line-height: 19.2px;
-
-  width: 300px;
 }
