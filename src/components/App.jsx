@@ -1,5 +1,14 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import React, {
+  // useState,
+  useEffect,
+  Suspense,
+  lazy,
+} from 'react';
+import {
+  // Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/operation';
 // import ContactForm from 'components/ContactForm/ContactForm';
