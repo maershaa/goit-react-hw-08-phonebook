@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/operation';
-import ContactForm from 'components/ContactForm/ContactForm';
-import ContactList from 'components/Contacts/ContactsList';
-import Filter from 'components/Filter/Filter';
-import css from './App.module.css';
+// import ContactForm from 'components/ContactForm/ContactForm';
+// import ContactList from 'components/Contacts/ContactsList';
+// import Filter from 'components/Filter/Filter';
+// import css from './App.module.css';
+import Layout from 'components/Layout/Layout';
+import Loader from 'components/Loader/Loader';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const FavouriteContactsPage = lazy(() => import('pages/FavouriteContactsPage'));
+const AddConactPage = lazy(() => import('pages/AddConactPage'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 const App = () => {
   // Локальное состояние для отслеживания активной вкладки
-  const [activeTab, setActiveTab] = useState('form');
   const dispatch = useDispatch();
-
-  // Функция для изменения активной вкладки
-  const handleTabChange = tab => {
-    setActiveTab(tab);
-  };
 
   // !размещено тут чтобы если списко контатков не изменился, то и запрос по 100 раз делать не нужно
   useEffect(() => {
@@ -22,43 +24,20 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-
-      {/* Компоненты для переключения между вкладками */}
-      <div className={css.tabs}>
-        {/* Кнопка для переключения на форму добавления контакта */}
-        <button
-          onClick={() => handleTabChange('form')}
-          className={activeTab === 'form' ? css.activeTab : ''}
-        >
-          Contact Form
-        </button>
-
-        {/* Кнопка для переключения на фильтр и список контактов */}
-        <button
-          onClick={() => handleTabChange('list')}
-          className={activeTab === 'list' ? css.activeTab : ''}
-        >
-          Contact List
-        </button>
-      </div>
-
-      {/* Контент соответствующей вкладки */}
-      <div className={css.tabContent}>
-        {/* Если активная вкладка - форма добавления контакта */}
-        {activeTab === 'form' && <ContactForm />}
-
-        {/* Если активная вкладка - список контактов */}
-        {activeTab === 'list' && (
-          <div className={css.contactsAndSearchWrapper}>
-            <Filter />
-            <ContactList />
-          </div>
-        )}
-      </div>
-    </div>
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/favouriteContacts"
+            element={<FavouriteContactsPage />}
+          />
+          <Route path="/addContact" element={<AddConactPage />} />
+          <Route path="*" element={<NotFound />} />
+          {/* Страница 404 */}
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 };
-
 export default App;
