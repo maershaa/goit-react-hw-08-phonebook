@@ -1,26 +1,18 @@
 import React, { Suspense } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { StyledLayout } from 'components/Layout/StyledLayout';
 import { selectContactsIsLoading, selectContactsError } from 'redux/selectors';
-import { selectAuthenticated, selectUserData } from 'redux/auth/auth.selectors';
-
-import { logOutThunk } from 'redux/auth/auth.operation';
+import { selectAuthenticated } from 'redux/auth/auth.selectors';
+import UserMenu from 'components/UserMenu/UserMenu';
 
 const Layout = ({ children }) => {
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
-  const dispatch = useDispatch();
   const isAuthenticated = useSelector(selectAuthenticated);
   console.log('isAuthenticated', isAuthenticated);
-
-  const userData = useSelector(selectUserData);
-
-  const onLogOut = () => {
-    dispatch(logOutThunk());
-  };
 
   return (
     <Suspense fallback={<Loader />}>
@@ -75,12 +67,11 @@ const Layout = ({ children }) => {
               </>
             )}
           </ul>
+          <UserMenu />
         </header>
 
         <div>
           <h1 className="title">Phonebook</h1>
-          {userData && userData.name && <span>Hello, {userData.name}!</span>}
-          <button onClick={onLogOut}>Log Out</button>
         </div>
         <main>{children}</main>
 
