@@ -25,13 +25,13 @@ const authSlice = createSlice({
     builder
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.authenticated = true;
+        state.isAuthenticated = true;
         state.token = payload.token;
         state.userData = payload.user;
       })
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.authenticated = true;
+        state.isAuthenticated = true;
         state.token = payload.token;
         state.userData = payload.user;
       })
@@ -40,7 +40,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.authenticated = true;
+        state.isAuthenticated = true;
         state.userData = payload;
       })
 

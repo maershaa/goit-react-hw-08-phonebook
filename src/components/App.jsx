@@ -4,19 +4,18 @@ import React, {
   Suspense,
   lazy,
 } from 'react';
-import {
-  // Navigate,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/operation';
-// import ContactForm from 'components/ContactForm/ContactForm';
-// import ContactList from 'components/Contacts/ContactsList';
-// import Filter from 'components/Filter/Filter';
-// import css from './App.module.css';
+
 import Layout from 'components/Layout/Layout';
 import Loader from 'components/Loader/Loader';
+
+import { refreshThunk } from 'redux/auth/auth.operation';
+
+import * as ROUTES from 'constants/routes';
+import RestrictedRoute from 'components/RestrictedRoute';
+import PrivateRoute from 'components/PrivateRoute';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('pages/Login'));
@@ -25,6 +24,53 @@ const Contacts = lazy(() => import('pages/Contacts'));
 const FavouriteContactsPage = lazy(() => import('pages/FavouriteContactsPage'));
 const AddConactPage = lazy(() => import('pages/AddConactPage'));
 const NotFound = lazy(() => import('pages/NotFound'));
+
+const appRoutes = [
+  {
+    path: ROUTES.HOME_ROUTE,
+    element: <HomePage />,
+  },
+  {
+    path: ROUTES.LOGIN_ROUTE,
+    element: (
+      <RestrictedRoute navigateTo={ROUTES.CONTACTS_ROUTE}>
+        <Login />
+      </RestrictedRoute>
+    ),
+  },
+  {
+    path: ROUTES.REGISTER_ROUTE,
+    element: (
+      <RestrictedRoute navigateTo={ROUTES.LOGIN_ROUTE}>
+        <Register />
+      </RestrictedRoute>
+    ),
+  },
+  {
+    path: ROUTES.CONTACTS_ROUTE,
+    element: (
+      <PrivateRoute>
+        <Contacts />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: ROUTES.FAVOURITES_ROUTE,
+    element: (
+      <PrivateRoute>
+        <FavouriteContactsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: ROUTES.ADD_CONTACT_ROUTE,
+    element: (
+      <PrivateRoute>
+        <AddConactPage />
+      </PrivateRoute>
+    ),
+  },
+];
 
 const App = () => {
   // Локальное состояние для отслеживания активной вкладки
@@ -35,22 +81,18 @@ const App = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(refreshThunk());
+  }, [dispatch]);
+
   return (
     <Layout>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-
-          <Route path="/contacts" element={<Contacts />} />
-          <Route
-            path="/favouriteContacts"
-            element={<FavouriteContactsPage />}
-          />
-          <Route path="/addContact" element={<AddConactPage />} />
-          <Route path="*" element={<NotFound />} />
-          {/* Страница 404 */}
+          {appRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+          <Route path="*" element={<NotFound />} /> {/* Страница 404 */}
         </Routes>
       </Suspense>
     </Layout>
