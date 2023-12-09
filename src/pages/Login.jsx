@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+{error && <p style={{ color: 'green' }}>Invalid username or password</p>}
       <form onSubmit={onSubmit} className={css.form}>
         {isLoading && <Loader />} 
         <label htmlFor="email" className={css.formLabel}>
