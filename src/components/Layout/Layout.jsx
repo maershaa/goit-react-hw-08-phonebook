@@ -19,12 +19,6 @@ const Layout = ({ children }) => {
   return (
     <Suspense fallback={<Loader />}>
       <StyledLayout>
-        {/* {error !== null && (
-          <p className="errorBadge">
-            Oops, some error occurred... Error message: {error}
-          </p>
-        )} */}
-
         {isLoading && <Loader />}
 
         <header className="headerContainer">
@@ -48,8 +42,8 @@ const Layout = ({ children }) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="headerLink" to="/favouriteContacts">
-                    Favourite contacts
+                  <NavLink className="headerLink" to="/weather">
+                   Weather
                   </NavLink>
                 </li>
               </>

@@ -10,6 +10,8 @@ import {
   selectFilteredContacts,
 } from 'redux/selectors';
 import { fetchContacts } from 'redux/operation';
+import NotFound from 'pages/NotFound';
+
 
 import Loader from 'components/Loader/Loader';
 
@@ -43,6 +45,9 @@ export const ContactsList = () => {
       )}
 
       {isLoading && <Loader />}
+      {sortedContacts.length === 0 ? (
+      <NotFound />
+    ) : (
       <ul className={css.contactsList}>
         {showContacts &&
           sortedContacts.map(contact => (
@@ -54,7 +59,8 @@ export const ContactsList = () => {
             />
           ))}
       </ul>
-    </div>
+    )}
+  </div>
   );
 };
 

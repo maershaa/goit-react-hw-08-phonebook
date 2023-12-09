@@ -20,7 +20,7 @@ const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('pages/Login'));
 const Register = lazy(() => import('pages/Register'));
 const Contacts = lazy(() => import('pages/Contacts'));
-const FavouriteContactsPage = lazy(() => import('pages/FavouriteContactsPage'));
+const WeatherPage = lazy(() => import('pages/WeatherPage'));
 const AddConactPage = lazy(() => import('pages/AddConactPage'));
 const NotFound = lazy(() => import('pages/NotFound'));
 
@@ -54,10 +54,10 @@ const appRoutes = [
     ),
   },
   {
-    path: ROUTES.FAVOURITES_ROUTE,
+    path: ROUTES.WEATHER_ROUTE,
     element: (
       <PrivateRoute>
-        <FavouriteContactsPage />
+        <WeatherPage />
       </PrivateRoute>
     ),
   },
