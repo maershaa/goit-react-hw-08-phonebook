@@ -31,8 +31,6 @@ const ContactForm = () => {
     const formData = {
       name,
       number,
-      // !А нужно ли
-      // isFavourite: false,
     };
 
     // Отправляем новый контакт в Redux хранилище
