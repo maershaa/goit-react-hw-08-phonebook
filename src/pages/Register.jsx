@@ -6,6 +6,8 @@ import {
   selectAuthError,
 } from 'redux/auth/auth.selectors';
 import Loader from 'components/Loader/Loader';
+import css from 'pages/LoginaAndRegister.module.css';
+
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -39,30 +41,33 @@ const Register = () => {
     <form onSubmit={onSubmit}>
             {error && <p style={{ color: 'red' }}>Error: {error}</p>}
             {isLoading && <Loader />} 
-      <label>
-        <p>Name:</p>
-        <input type="text" placeholder="Full name" required name="userName" />
+      <label htmlFor="text" className={css.formLabel}>
+        <p className={css.labelTitle}>Name:</p>
+        <input type="text" placeholder="Full name" required name="userName"             className={css.inputText}
+/>
       </label>
-      <label>
-        <p>Email:</p>
+      <label htmlFor="email" className={css.formLabel}>
+        <p className={css.labelTitle}>Email:</p>
         <input
           type="email"
           placeholder="Email adress"
           required
           name="userEmail"
+          className={css.inputText}
         />
       </label>
-      <label>
-        <p>Password:</p>
+      <label htmlFor="password" className={css.formLabel}>
+        <p className={css.labelTitle}>Password:</p>
         <input
           type="password"
           placeholder="Password"
           required
           name="userPassword"
+          className={css.inputText}
         />
       </label>
       <br />
-      <button type="submit">Sign Up</button>
+      <button type="submit"  className={css.signUpButton}>Sign Up</button>
     </form>
   );
 };
