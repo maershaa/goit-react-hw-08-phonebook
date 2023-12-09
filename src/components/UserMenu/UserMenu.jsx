@@ -15,9 +15,8 @@ const UserMenu = () => {
   return (
     <StyledUserMenu>
       <button onClick={onLogOut} className="logOutBtn">
-        Log Out
+        Log Out {userData.name}
       </button>
-      {userData && <p className="authText">Authorized as: {userData.email}</p>}
     </StyledUserMenu>
   );
 };

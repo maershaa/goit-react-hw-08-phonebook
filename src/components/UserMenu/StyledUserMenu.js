@@ -26,10 +26,5 @@ export const StyledUserMenu = styled.div`
     transition: transform 0.3s ease; /* Добавьте плавное переходное свойство */
   }
 
-  /* !!! чего не работает? */
-  .authText {
-    color: blue;
-    background-color: pink;
-    font-size: 20px;
-  }
+
 `;

@@ -19,12 +19,11 @@ const Register = () => {
     const name = e.currentTarget.elements.userName.value;
     const email = e.currentTarget.elements.userEmail.value;
     const password = e.currentTarget.elements.userPassword.value;
-    
+
     const formData = {
       name: typeof name === 'string' ? name.trim() : name,
       email: typeof email === 'string' ? email.trim() : email,
       password: typeof password === 'string' ? password.trim() : password,
-      // isFavourite: false,
     };
 
       // Проверка длины пароля
