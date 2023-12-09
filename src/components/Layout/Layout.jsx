@@ -4,13 +4,15 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { StyledLayout } from 'components/Layout/StyledLayout';
-import { selectContactsIsLoading, selectContactsError } from 'redux/selectors';
+import { selectContactsIsLoading, 
+  // selectContactsError
+ } from 'redux/selectors';
 import { selectAuthenticated } from 'redux/auth/auth.selectors';
 import UserMenu from 'components/UserMenu/UserMenu';
 
 const Layout = ({ children }) => {
   const isLoading = useSelector(selectContactsIsLoading);
-  const error = useSelector(selectContactsError);
+  // const error = useSelector(selectContactsError);
   const isAuthenticated = useSelector(selectAuthenticated);
   console.log('isAuthenticated', isAuthenticated);
 
