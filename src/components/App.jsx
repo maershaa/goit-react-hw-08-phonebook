@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/operation';
 
 import Layout from 'components/Layout/Layout';
 import Loader from 'components/Loader/Loader';
@@ -76,10 +75,7 @@ const App = () => {
   // Локальное состояние для отслеживания активной вкладки
   const dispatch = useDispatch();
 
-  // !размещено тут чтобы если списко контатков не изменился, то и запрос по 100 раз делать не нужно
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+
 
   useEffect(() => {
     dispatch(refreshThunk());

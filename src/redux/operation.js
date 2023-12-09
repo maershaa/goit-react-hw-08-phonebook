@@ -9,7 +9,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get('/contacts');
-      // !console.log('fetchContacts', response.data);
+      console.log('fetchContacts', response.data);
       // Возвращаем данные при успешном запросе
       return response.data;
     } catch (e) {
@@ -22,10 +22,10 @@ export const fetchContacts = createAsyncThunk(
 // Добавление нового контакта (метод POST)
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, email }, thunkAPI) => {
+  async ({ name, number }, thunkAPI) => {
     try {
-      const response = await instance.post('/contacts', { name, email });
-      // !console.log('addContact', response.data);
+      const response = await instance.post('/contacts', { name, number });
+      console.log('addContact', response.data);
       return response.data;
     } catch (error) {
       // В случае ошибки возвращаем отклоненное значение с текстом ошибки

@@ -15,7 +15,7 @@ const Filter = () => {
   const handleFilterChange = e => {
     // Получаем новое значение фильтра из события изменения поля ввода
     const newFilterValue = e.target.value;
-    console.log('newFilterValue', newFilterValue);
+    console.log('newFilterValue in handleFilterChange', newFilterValue);
 
     // Диспетчеризация экшена filterContact для обновления фильтра в состоянии Redux
     dispatch(setFilterWord(newFilterValue));

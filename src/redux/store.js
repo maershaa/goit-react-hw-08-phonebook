@@ -15,10 +15,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-// const rootReducer = combineReducers({
-//   contactsStore: contactsReducer,
-// });
-
 const persistConfig = {
   key: 'auth',
   storage,
