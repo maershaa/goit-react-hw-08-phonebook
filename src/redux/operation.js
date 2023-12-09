@@ -1,15 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://655e5ee89722d515ea1652fe.mockapi.io';
+import { instance } from 'redux/auth/auth.operation';
 
 // Загрузка всех контактов
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
-  // В первом параметре обычно передается payload, но здесь он не нужен, используем '_'
+  'contacts/getAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/contacts');
+      const response = await instance.get('/contacts');
       // !console.log('fetchContacts', response.data);
       // Возвращаем данные при успешном запросе
       return response.data;
@@ -25,7 +24,7 @@ export const addContact = createAsyncThunk(
   'contacts/addContact',
   async ({ name, email }, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', { name, email });
+      const response = await instance.post('/contacts', { name, email });
       // !console.log('addContact', response.data);
       return response.data;
     } catch (error) {
@@ -40,7 +39,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/contacts/${contactId}`);
+      const { data } = await instance.delete(`/contacts/${contactId}`);
       // !console.log('deleteContact contactId', contactId);
       // !console.log('deleteContact data', data);
       return data;
@@ -56,7 +55,7 @@ export const toggleIsFavourite = createAsyncThunk(
   'contacts/toggleIsFavourite',
   async (contactId, thunkAPI) => {
     try {
-      const response = await axios.get(`/contacts/${contactId}`);
+      const response = await instance.get(`/contacts/${contactId}`);
       const { isFavourite } = response.data;
 
       // Обновляем статус "избранного" на противоположный

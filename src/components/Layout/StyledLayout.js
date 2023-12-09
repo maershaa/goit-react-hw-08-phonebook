@@ -3,11 +3,12 @@ export const StyledLayout = styled.div`
   padding: 20px;
 
   .headerContainer {
-    padding-left: 15px;
-    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
     margin-left: auto;
     margin-right: auto;
-
     border-bottom: 1px solid #e7e9fc;
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
       0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
@@ -25,9 +26,6 @@ export const StyledLayout = styled.div`
     flex-direction: row;
     text-align: center;
     justify-content: center;
-
-    margin-right: auto;
-    margin-left: auto;
   }
 
   .headerLink {

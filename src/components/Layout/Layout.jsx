@@ -17,11 +17,11 @@ const Layout = ({ children }) => {
   return (
     <Suspense fallback={<Loader />}>
       <StyledLayout>
-        {error !== null && (
+        {/* {error !== null && (
           <p className="errorBadge">
             Oops, some error occurred... Error message: {error}
           </p>
-        )}
+        )} */}
 
         {isLoading && <Loader />}
 
@@ -67,7 +67,12 @@ const Layout = ({ children }) => {
               </>
             )}
           </ul>
-          <UserMenu />
+
+          {/*  если isAuthenticated равно false, ничего не будет отображаться. */}
+          {isAuthenticated ? (
+                <UserMenu />
+              ) : null}
+
         </header>
 
         <div>

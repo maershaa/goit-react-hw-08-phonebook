@@ -41,7 +41,7 @@ const appRoutes = [
   {
     path: ROUTES.REGISTER_ROUTE,
     element: (
-      <RestrictedRoute navigateTo={ROUTES.LOGIN_ROUTE}>
+      <RestrictedRoute navigateTo={ROUTES.CONTACTS_ROUTE}>
         <Register />
       </RestrictedRoute>
     ),

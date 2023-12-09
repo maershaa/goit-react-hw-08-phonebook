@@ -1,16 +1,15 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-export const selectContacts = state => state.contactsStore.contacts.items;
+export const selectContacts = state => state.contacts.items;
 
-export const selectContactsIsLoading = state =>
-  state.contactsStore.contacts.isLoading;
+export const selectContactsIsLoading = state => state.contacts.isLoading;
 
-export const selectContactsError = state => state.contactsStore.contacts.error;
+export const selectContactsError = state => state.contacts.error;
 
 // !Селектор для получения статуса "избранности" контакта по его идентификатору
 export const selectContactsIsFavourite = (state, contactId) => {
   // Найти контакт в массиве контактов по идентификатору
-  const contact = state.contactsStore.contacts.items.find(
+  const contact = state.contacts.items.find(
     contact => contact.id === contactId
   );
   // Если контакт с указанным ID найден, вернуть его статус "избранности", иначе вернуть false
@@ -18,9 +17,9 @@ export const selectContactsIsFavourite = (state, contactId) => {
 };
 
 export const selectContactsFavouriteContacts = state =>
-  state.contactsStore.contacts.favouriteContacts;
+  state.contacts.favouriteContacts;
 
-export const selectFilter = state => state.contactsStore.filterWord;
+export const selectFilter = state => state.filterWord;
 
 // Создание селектора для фильтрации контактов
 export const selectFilteredContacts = createSelector(
@@ -28,8 +27,10 @@ export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],
   // Функция, которая принимает данные из селекторов и применяет фильтрацию
   (contacts, filterWord) => {
-    // console.log('Input contacts:', contacts);
-    // console.log('Input filterWord:', filterWord);
+    // Проверяем, что filterWord не равен undefined, иначе возвращаем пустой массив
+    if (filterWord === undefined) {
+      return [];
+    }
 
     // Приводим значение фильтра к нижнему регистру и удаляем лишние пробелы
     const formattedFilterWord = filterWord.toLowerCase().trim();
@@ -43,3 +44,4 @@ export const selectFilteredContacts = createSelector(
     );
   }
 );
+
