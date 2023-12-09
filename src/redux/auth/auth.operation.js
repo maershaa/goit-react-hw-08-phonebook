@@ -37,8 +37,12 @@ export const registerThunk = createAsyncThunk(
   'auth/register',
   async (formData, thunkApi) => {
     try {
+      console.log('Before POST request:', formData); // Лог перед отправкой POST-запроса
       // Отправка POST-запроса на сервер для регистрации пользователя
       const { data } = await instance.post('/users/signup', formData);
+     
+      console.log('POST request response:', data); // Лог ответа от POST-запроса
+
       // Установка токена авторизации в экземпляре Axios
       setToken(data.token);
 

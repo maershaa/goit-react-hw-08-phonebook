@@ -18,15 +18,15 @@ export const selectContactsError = state => {
 // !Селектор для получения статуса "избранности" контакта по его идентификатору
 // Селектор для получения статуса "избранности" контакта по его ID
 export const selectContactsIsFavourite = (state, contactId) => {
-  // Логирование ID контакта
   // console.log('Contact ID:', contactId);
 
   // Найти контакт в массиве контактов по идентификатору
   const contact = state.contacts.contacts.items.find(contact => contact.id === contactId);
 
   // Логирование найденного контакта
-  // console.log('Contact:', contact);
+  console.log('Contact in selector isFavourite:', contact);
 
+  // если contact существует (не является null или undefined), будет возвращено значение contact.isFavouriteБ, а иначе будет возвращено false.
   return contact ? contact.isFavourite : false;
 };
 
@@ -53,8 +53,8 @@ export const selectFilteredContacts = createSelector(
   (contacts, filterWord) => {
 
    // Логирование контактов и значения фильтрации
-   console.log('Contacts for Filtering:', contacts);
-   console.log('Filter Word for Filtering:', filterWord);
+  //  console.log('Contacts for Filtering:', contacts);
+  //  console.log('Filter Word for Filtering:', filterWord);
 
     // Проверяем, что filterWord не равен undefined, иначе возвращаем пустой массив
     if (filterWord === undefined) {

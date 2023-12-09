@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { instance } from 'redux/auth/auth.operation';
@@ -22,9 +21,11 @@ export const fetchContacts = createAsyncThunk(
 // Добавление нового контакта (метод POST)
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, number }, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await instance.post('/contacts', { name, number });
+      const response = await instance.post('/contacts', formData);
+      console.log('formData', formData);
+
       console.log('addContact', response.data);
       return response.data;
     } catch (error) {
@@ -56,10 +57,11 @@ export const toggleIsFavourite = createAsyncThunk(
   async (contactId, thunkAPI) => {
     try {
       const response = await instance.get(`/contacts/${contactId}`);
+      console.log('toggleIsFavourite response', response);
       const { isFavourite } = response.data;
 
       // Обновляем статус "избранного" на противоположный
-      const updatedResponse = await axios.put(`/contacts/${contactId}`, {
+      const updatedResponse = await instance.put(`/contacts/${contactId}`, {
         isFavourite: !isFavourite,
       });
       console.log('toggleIsFavourite', updatedResponse.data);

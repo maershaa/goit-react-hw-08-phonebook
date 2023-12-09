@@ -28,8 +28,15 @@ const ContactForm = () => {
       return;
     }
 
+    const formData = {
+      name,
+      number,
+      // !А нужно ли
+      // isFavourite: false,
+    };
+
     // Отправляем новый контакт в Redux хранилище
-    dispatch(addContact({ name, number }));
+    dispatch(addContact(formData));
     reset();
   };
 
